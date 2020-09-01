@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>共识算法插件化使用文档 | BitXHub文档</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="BitXHub部署文档、使用文档、设计文档站">
+    <link rel="preload" href="/bitxhub/assets/css/0.styles.fbae815b.css" as="style"><link rel="preload" href="/bitxhub/assets/js/app.3450d84e.js" as="script"><link rel="preload" href="/bitxhub/assets/js/2.9c5ab97b.js" as="script"><link rel="preload" href="/bitxhub/assets/js/9.a2be9c30.js" as="script"><link rel="prefetch" href="/bitxhub/assets/js/10.c231280d.js"><link rel="prefetch" href="/bitxhub/assets/js/11.9ee973cb.js"><link rel="prefetch" href="/bitxhub/assets/js/12.46fcade6.js"><link rel="prefetch" href="/bitxhub/assets/js/13.b374135c.js"><link rel="prefetch" href="/bitxhub/assets/js/14.d7888f74.js"><link rel="prefetch" href="/bitxhub/assets/js/15.6d1bf087.js"><link rel="prefetch" href="/bitxhub/assets/js/3.2e17f55f.js"><link rel="prefetch" href="/bitxhub/assets/js/4.5566ec6d.js"><link rel="prefetch" href="/bitxhub/assets/js/5.427bfa4e.js"><link rel="prefetch" href="/bitxhub/assets/js/6.27cb6483.js"><link rel="prefetch" href="/bitxhub/assets/js/7.d45d02aa.js"><link rel="prefetch" href="/bitxhub/assets/js/8.ab54e651.js">
+    <link rel="stylesheet" href="/bitxhub/assets/css/0.styles.fbae815b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/bitxhub/" class="home-link router-link-active"><img src="/bitxhub/images/logo.png" alt="BitXHub文档" class="logo"> <span class="site-name can-hide">BitXHub文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://bitxhub.hyperchain.cn/#/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/meshplus/bitxhub" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://bitxhub.hyperchain.cn/#/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/meshplus/bitxhub" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/bitxhub/quick/" class="sidebar-link">快速开始</a></li><li><a href="/bitxhub/deploy/" class="sidebar-link">部署文档</a></li><li><a href="/bitxhub/usage/" class="sidebar-link">使用文档</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/bitxhub/develop/" class="sidebar-heading clickable router-link-active open"><span>开发文档</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/bitxhub/develop/consensus_usage.html" aria-current="page" class="active sidebar-link">共识算法插件化使用文档</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/bitxhub/develop/consensus_usage.html#_1-开发要求" class="sidebar-link">1. 开发要求</a></li><li class="sidebar-sub-header"><a href="/bitxhub/develop/consensus_usage.html#_2-准备" class="sidebar-link">2. 准备</a></li><li class="sidebar-sub-header"><a href="/bitxhub/develop/consensus_usage.html#_3-程序目的" class="sidebar-link">3. 程序目的</a></li><li class="sidebar-sub-header"><a href="/bitxhub/develop/consensus_usage.html#_4-接入共识算法" class="sidebar-link">4. 接入共识算法</a></li></ul></li><li><a href="/bitxhub/develop/consensus_design.html" class="sidebar-link">共识算法插件化设计文档</a></li><li><a href="/bitxhub/develop/interchain_contract.html" class="sidebar-link">跨链合约编写规范</a></li><li><a href="/bitxhub/develop/rule.html" class="sidebar-link">验证引擎规则编写规范</a></li></ul></section></li><li><a href="/bitxhub/faq/" class="sidebar-link">FAQ</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="共识算法插件化使用文档"><a href="#共识算法插件化使用文档" class="header-anchor">#</a> 共识算法插件化使用文档</h1> <p>在本教程中，你将构建一个完整功能的共识服务。过程中能学习基本的概念和具体使用细节。该示例将展示如何快速、轻松地<strong>接入自己的共识算法到BitXHub中来</strong>。</p> <h2 id="_1-开发要求"><a href="#_1-开发要求" class="header-anchor">#</a> 1. 开发要求</h2> <ul><li><p>安装 <a href="https://golang.org/doc/install" target="_blank" rel="noopener noreferrer"><strong>go1.13+</strong><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></li> <li><p>设置好$GOPATH等环境</p></li></ul> <h2 id="_2-准备"><a href="#_2-准备" class="header-anchor">#</a> 2. 准备</h2> <p>为了更加便捷的开发共识服务接入到<code>BitXHub</code>中来，我们提供了一些接口和参数。</p> <h3 id="_2-1-order接口"><a href="#_2-1-order接口" class="header-anchor">#</a> 2.1 Order接口</h3> <p>我们规定了下面一些必要的接口，这些接口是<code>BitXHub</code>与共识服务的交互接口。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> Order <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+	<span class="token comment">//开启共识服务</span>
+	<span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
+
+	<span class="token comment">//停止共识服务，关闭共识服务资源</span>
+	<span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token comment">//交易发送到共识服务，共识服务将处理并打包该交易</span>
+	<span class="token function">Prepare</span><span class="token punctuation">(</span>tx <span class="token operator">*</span>pb<span class="token punctuation">.</span>Transaction<span class="token punctuation">)</span> <span class="token builtin">error</span>
+
+	<span class="token comment">//返回打包的区块</span>
+	<span class="token function">Commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">chan</span> <span class="token operator">*</span>pb<span class="token punctuation">.</span>Block
+
+	<span class="token comment">//从网络接收到的共识消息</span>
+	<span class="token function">Step</span><span class="token punctuation">(</span>ctx context<span class="token punctuation">.</span>Context<span class="token punctuation">,</span> msg <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
+
+	<span class="token comment">//集群中产生了新Leader，系统通过该接口判断共识服务是否正常</span>
+	<span class="token function">Ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span>
+
+	<span class="token comment">//系统会通知该接口已经持久化的区块，</span>
+	<span class="token function">ReportState</span><span class="token punctuation">(</span>height <span class="token builtin">uint64</span><span class="token punctuation">,</span> hash types<span class="token punctuation">.</span>Hash<span class="token punctuation">)</span>
+
+	<span class="token comment">//集群中可以正常工作的最少节点数量，如在raft中要求正常节点数是N/2+1</span>
+	<span class="token function">Quorum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">uint64</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_2-2-config参数"><a href="#_2-2-config参数" class="header-anchor">#</a> 2.2 Config参数</h3> <p>我们规定了下面一些参数可以从BitXHub传递给共识服务。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> Config <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+   Id                 <span class="token builtin">uint64</span> <span class="token comment">//节点ID</span>
+   RepoRoot           <span class="token builtin">string</span> <span class="token comment">//根路径</span>
+   StoragePath        <span class="token builtin">string</span> <span class="token comment">//存储文件路径</span>
+   PluginPath         <span class="token builtin">string</span> <span class="token comment">//插件文件路径</span>
+   PeerMgr            peermgr<span class="token punctuation">.</span>PeerManager <span class="token comment">//网络模块组件</span>
+   PrivKey            crypto<span class="token punctuation">.</span>PrivateKey <span class="token comment">//节点私钥</span>
+   Logger             logrus<span class="token punctuation">.</span>FieldLogger <span class="token comment">//日志组件</span>
+   Nodes              <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">uint64</span><span class="token punctuation">]</span>types<span class="token punctuation">.</span>Address <span class="token comment">//集群节点网络地址</span>
+   Applied            <span class="token builtin">uint64</span> <span class="token comment">//当前区块高度</span>
+   Digest             <span class="token builtin">string</span> <span class="token comment">//当前区块哈希</span>
+   GetTransactionFunc <span class="token keyword">func</span><span class="token punctuation">(</span>hash types<span class="token punctuation">.</span>Hash<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span>pb<span class="token punctuation">.</span>Transaction<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token comment">//获取已经持久化的交易函数</span>
+   GetChainMetaFunc   <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>pb<span class="token punctuation">.</span>ChainMeta <span class="token comment">//获取链的元信息函数，其中包括当前区块高度和区块哈希</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_2-3-filter过滤器"><a href="#_2-3-filter过滤器" class="header-anchor">#</a> 2.3 Filter过滤器</h3> <p>为了更加方便过滤重复交易，我们提供了布隆过滤器的组件。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+   filterDbKey <span class="token operator">=</span> <span class="token string">&quot;bloom_filter&quot;</span>
+   m <span class="token operator">=</span> <span class="token number">10000000</span> <span class="token comment">//filter的字节位数</span>
+   k <span class="token operator">=</span> <span class="token number">4</span>        <span class="token comment">//计算hash的次数</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> ReqLookUp <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+   filter       <span class="token operator">*</span>bloom<span class="token punctuation">.</span>BloomFilter <span class="token comment">//bloom过滤器</span>
+   storage storage<span class="token punctuation">.</span>Storage <span class="token comment">//leveldb存储</span>
+   b       bytes<span class="token punctuation">.</span>Buffer <span class="token comment">//filter缓存</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_3-程序目的"><a href="#_3-程序目的" class="header-anchor">#</a> 3. 程序目的</h2> <p>本教程以开发一个简单Solo版本的共识算法为例。</p> <h3 id="_3-1-开始编写你的程序"><a href="#_3-1-开始编写你的程序" class="header-anchor">#</a> 3.1 开始编写你的程序</h3> <p>首先选择你的工程目录，按照正常的GO程序的流程建立项目</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ go version // 确认你安装的GO版本
+$ <span class="token function">mkdir</span> <span class="token variable">${YOUR_PROJECT}</span>
+$ <span class="token builtin class-name">cd</span> <span class="token variable">${YOUR_PROJECT}</span>
+$ go mod init
+</code></pre></div><h3 id="_3-2-node对象"><a href="#_3-2-node对象" class="header-anchor">#</a> 3.2 Node对象</h3> <p>首先创建一个<code>node.go</code>文件，这个文件是共识Plugin的核心和入口，来看看<code>Node</code>具体结构</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> Node <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+   sync<span class="token punctuation">.</span>RWMutex         
+   height             <span class="token builtin">uint64</span>             <span class="token comment">// 当前区块高度</span>
+   pendingTxs         <span class="token operator">*</span>list<span class="token punctuation">.</span>List         <span class="token comment">//交易池</span>
+   commitC            <span class="token keyword">chan</span> <span class="token operator">*</span>pb<span class="token punctuation">.</span>Block     <span class="token comment">//区块channel</span>
+   logger             logrus<span class="token punctuation">.</span>FieldLogger <span class="token comment">//日志</span>
+   reqLookUp          <span class="token operator">*</span>order<span class="token punctuation">.</span>ReqLookUp   <span class="token comment">//bloom过滤器</span>
+   getTransactionFunc <span class="token keyword">func</span><span class="token punctuation">(</span>hash types<span class="token punctuation">.</span>Hash<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span>pb<span class="token punctuation">.</span>Transaction<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token comment">//获取持久化的交易函数</span>
+   packSize  <span class="token builtin">int</span>           <span class="token comment">//出块的最大交易数量</span>
+   blockTick time<span class="token punctuation">.</span>Duration <span class="token comment">//出块间隔</span>
+
+   ctx    context<span class="token punctuation">.</span>Context 
+   cancel context<span class="token punctuation">.</span>CancelFunc 
+<span class="token punctuation">}</span>
+</code></pre></div><p>然后应该提供一个<code>Order</code>的实例化的接口（类似于构造函数），具体代码如下：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">NewNode</span><span class="token punctuation">(</span>opts <span class="token operator">...</span>order<span class="token punctuation">.</span>Option<span class="token punctuation">)</span> <span class="token punctuation">(</span>order<span class="token punctuation">.</span>Order<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment">//处理Order参数</span>
+   config<span class="token punctuation">,</span> err <span class="token operator">:=</span> order<span class="token punctuation">.</span><span class="token function">GenerateConfig</span><span class="token punctuation">(</span>opts<span class="token operator">...</span><span class="token punctuation">)</span>
+   <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">&quot;generate config: %w&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token comment">//创建leveldb，用于存储bloom filter</span>
+   storage<span class="token punctuation">,</span> err <span class="token operator">:=</span> leveldb<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>StoragePath<span class="token punctuation">)</span>
+   <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">&quot;new leveldb: %w&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token comment">//创建bloom filter，用于过滤重复交易</span>
+   reqLookUp<span class="token punctuation">,</span> err <span class="token operator">:=</span> order<span class="token punctuation">.</span><span class="token function">NewReqLookUp</span><span class="token punctuation">(</span>storage<span class="token punctuation">)</span>
+   <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">&quot;new bloom filter: %w&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token comment">//创建node的上下文</span>
+   ctx<span class="token punctuation">,</span> cancel <span class="token operator">:=</span> context<span class="token punctuation">.</span><span class="token function">WithCancel</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">Background</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+   <span class="token keyword">return</span> <span class="token operator">&amp;</span>Node<span class="token punctuation">{</span>
+      height<span class="token punctuation">:</span>             config<span class="token punctuation">.</span>Applied<span class="token punctuation">,</span><span class="token comment">//区块的当前高度</span>
+      pendingTxs<span class="token punctuation">:</span>         list<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      commitC<span class="token punctuation">:</span>            <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token operator">*</span>pb<span class="token punctuation">.</span>Block<span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      packSize<span class="token punctuation">:</span>           <span class="token number">500</span><span class="token punctuation">,</span> <span class="token comment">//出块的最大交易数量，可配置在order.toml中</span>
+      blockTick<span class="token punctuation">:</span>          <span class="token number">500</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Millisecond<span class="token punctuation">,</span> <span class="token comment">//出块时间间隔，可配置在order.toml中</span>
+      reqLookUp<span class="token punctuation">:</span>          reqLookUp<span class="token punctuation">,</span>
+      getTransactionFunc<span class="token punctuation">:</span> config<span class="token punctuation">.</span>GetTransactionFunc<span class="token punctuation">,</span>
+      logger<span class="token punctuation">:</span>             config<span class="token punctuation">.</span>Logger<span class="token punctuation">,</span>
+      ctx<span class="token punctuation">:</span>                ctx<span class="token punctuation">,</span>
+      cancel<span class="token punctuation">:</span>             cancel<span class="token punctuation">,</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_3-3-node主要方法"><a href="#_3-3-node主要方法" class="header-anchor">#</a> 3.3 Node主要方法</h3> <p>通过描述Node的主要方法，介绍pending的交易是如何被打包到区块中以及如何与<code>BitXHub</code>系统进行交互。</p> <h4 id="_3-3-1-start方法"><a href="#_3-3-1-start方法" class="header-anchor">#</a> 3.3.1 Start方法</h4> <p>功能：定时在交易池中扫描交易并出块。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+   <span class="token keyword">go</span> n<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+   <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token comment">//开启定时器，定时扫描交易池中是否存在pending的交易</span>
+   ticker <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">NewTicker</span><span class="token punctuation">(</span>n<span class="token punctuation">.</span>blockTick<span class="token punctuation">)</span>
+   <span class="token keyword">defer</span> ticker<span class="token punctuation">.</span><span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+   <span class="token keyword">for</span> <span class="token punctuation">{</span>
+      <span class="token keyword">select</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token operator">&lt;-</span>ticker<span class="token punctuation">.</span>C<span class="token punctuation">:</span>
+         n<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+         l <span class="token operator">:=</span> n<span class="token punctuation">.</span>pendingTxs<span class="token punctuation">.</span><span class="token function">Len</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+         <span class="token keyword">if</span> l <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+            n<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">continue</span>
+         <span class="token punctuation">}</span>
+
+         <span class="token keyword">var</span> size <span class="token builtin">int</span>
+         <span class="token keyword">if</span> l <span class="token operator">&gt;</span> n<span class="token punctuation">.</span>packSize <span class="token punctuation">{</span>
+            size <span class="token operator">=</span> n<span class="token punctuation">.</span>packSize
+         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            size <span class="token operator">=</span> l
+         <span class="token punctuation">}</span>
+
+	 <span class="token comment">//打包交易</span>
+         txs <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>pb<span class="token punctuation">.</span>Transaction<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> size<span class="token punctuation">)</span>
+         <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+            front <span class="token operator">:=</span> n<span class="token punctuation">.</span>pendingTxs<span class="token punctuation">.</span><span class="token function">Front</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            tx <span class="token operator">:=</span> front<span class="token punctuation">.</span>Value<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>pb<span class="token punctuation">.</span>Transaction<span class="token punctuation">)</span>
+            txs <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>txs<span class="token punctuation">,</span> tx<span class="token punctuation">)</span>
+            n<span class="token punctuation">.</span>pendingTxs<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>front<span class="token punctuation">)</span>
+         <span class="token punctuation">}</span>
+
+	<span class="token comment">//区块高度+1</span>
+         n<span class="token punctuation">.</span>height<span class="token operator">++</span>
+         n<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	 <span class="token comment">//区块出块</span>
+         block <span class="token operator">:=</span> <span class="token operator">&amp;</span>pb<span class="token punctuation">.</span>Block<span class="token punctuation">{</span>
+            BlockHeader<span class="token punctuation">:</span> <span class="token operator">&amp;</span>pb<span class="token punctuation">.</span>BlockHeader<span class="token punctuation">{</span>
+               Version<span class="token punctuation">:</span>   <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+               Number<span class="token punctuation">:</span>    n<span class="token punctuation">.</span>height<span class="token punctuation">,</span>
+               Timestamp<span class="token punctuation">:</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">UnixNano</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            Transactions<span class="token punctuation">:</span> txs<span class="token punctuation">,</span>
+         <span class="token punctuation">}</span>
+         n<span class="token punctuation">.</span>commitC <span class="token operator">&lt;-</span> block
+      <span class="token keyword">case</span> <span class="token operator">&lt;-</span>n<span class="token punctuation">.</span>ctx<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+         ticker<span class="token punctuation">.</span><span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-3-2-stop方法"><a href="#_3-3-2-stop方法" class="header-anchor">#</a> 3.3.2 Stop方法</h4> <p>功能：停止共识，释放共识相关资源。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   n<span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-3-3-prepare方法"><a href="#_3-3-3-prepare方法" class="header-anchor">#</a> 3.3.3 Prepare方法</h4> <p>功能：从<code>BitXHub</code>系统中传入交易，收集进交易池。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">Prepare</span><span class="token punctuation">(</span>tx <span class="token operator">*</span>pb<span class="token punctuation">.</span>Transaction<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+   hash <span class="token operator">:=</span> tx<span class="token punctuation">.</span>TransactionHash
+   <span class="token comment">//检查交易是否存在，防止交易二次打包</span>
+   <span class="token keyword">if</span> ok <span class="token operator">:=</span> n<span class="token punctuation">.</span>reqLookUp<span class="token punctuation">.</span><span class="token function">LookUp</span><span class="token punctuation">(</span>hash<span class="token punctuation">.</span><span class="token function">Bytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> tx<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> n<span class="token punctuation">.</span><span class="token function">getTransactionFunc</span><span class="token punctuation">(</span>hash<span class="token punctuation">)</span><span class="token punctuation">;</span> tx <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> <span class="token boolean">nil</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token comment">//交易进入交易池</span>
+   n<span class="token punctuation">.</span><span class="token function">pushBack</span><span class="token punctuation">(</span>tx<span class="token punctuation">)</span>
+   <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-3-4-commit方法"><a href="#_3-3-4-commit方法" class="header-anchor">#</a> 3.3.4 Commit方法</h4> <p>功能：返回新区块的<code>channel</code>。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">Commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">chan</span> <span class="token operator">*</span>pb<span class="token punctuation">.</span>Block <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> n<span class="token punctuation">.</span>commitC
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-3-5-step方法"><a href="#_3-3-5-step方法" class="header-anchor">#</a> 3.3.5 Step方法</h4> <p>功能：通过该接口接收共识的网络消息。</p> <div class="language-go extra-class"><pre class="language-go"><code>
+<span class="token comment">//由于示例是Solo的版本，故具体不实现该方法</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">Step</span><span class="token punctuation">(</span>ctx context<span class="token punctuation">.</span>Context<span class="token punctuation">,</span> msg <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-3-6-ready方法"><a href="#_3-3-6-ready方法" class="header-anchor">#</a> 3.3.6 Ready方法</h4> <p>功能：判断共识是否完成，Leader是否完成选举。</p> <div class="language-go extra-class"><pre class="language-go"><code>
+<span class="token comment">//由于示例是Solo的版本，单节点直接返回True</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">Ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-3-7-reportstate方法"><a href="#_3-3-7-reportstate方法" class="header-anchor">#</a> 3.3.7 ReportState方法</h4> <p>功能：新区块被持久化后，<code>BitXHub</code>会调用该接口通知共识服务</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">ReportState</span><span class="token punctuation">(</span>height <span class="token builtin">uint64</span><span class="token punctuation">,</span> hash types<span class="token punctuation">.</span>Hash<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment">//每一个新区块被存储后，持久化bloom filter</span>
+   <span class="token keyword">if</span> err <span class="token operator">:=</span> n<span class="token punctuation">.</span>reqLookUp<span class="token punctuation">.</span><span class="token function">Build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+      n<span class="token punctuation">.</span>logger<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">&quot;bloom filter persistence error：&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+   <span class="token comment">//每十个区块做一个Check Point</span>
+   <span class="token keyword">if</span> height<span class="token operator">%</span><span class="token number">10</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+      n<span class="token punctuation">.</span>logger<span class="token punctuation">.</span><span class="token function">WithFields</span><span class="token punctuation">(</span>logrus<span class="token punctuation">.</span>Fields<span class="token punctuation">{</span>
+         <span class="token string">&quot;height&quot;</span><span class="token punctuation">:</span> height<span class="token punctuation">,</span>
+         <span class="token string">&quot;hash&quot;</span><span class="token punctuation">:</span>   hash<span class="token punctuation">.</span><span class="token function">ShortString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">&quot;Report checkpoint&quot;</span><span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-3-8-quorum方法"><a href="#_3-3-8-quorum方法" class="header-anchor">#</a> 3.3.8 Quorum方法</h4> <p>功能：集群中可以正常工作的最少节点数量（比如在raft中要求正常节点数是N/2+1）。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token comment">//由于示例是Solo的版本，直接返回1</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>n <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token function">Quorum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">uint64</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_4-接入共识算法"><a href="#_4-接入共识算法" class="header-anchor">#</a> 4. 接入共识算法</h2> <h3 id="_4-1-配置文件"><a href="#_4-1-配置文件" class="header-anchor">#</a> 4.1 配置文件</h3> <p>可以通过配置<code>order.toml</code>文件，自定义你的共识算法。</p> <div class="language-none extra-class"><pre class="language-text"><code>[solo]
+[solo.tx_pool]
+   pack_size = 500 # 出块最大交易数
+   block_tick = &quot;500ms&quot; # 出块间隔
+</code></pre></div><h3 id="_4-2-插件化"><a href="#_4-2-插件化" class="header-anchor">#</a> 4.2 插件化</h3> <p><a href="https://github.com/meshplus/bitxhub/wiki/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95%E6%8F%92%E4%BB%B6%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3" target="_blank" rel="noopener noreferrer">共识算法插件化设计文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/bitxhub/usage/" class="prev">
+        使用文档
+      </a></span> <span class="next"><a href="/bitxhub/develop/consensus_design.html">
+        共识算法插件化设计文档
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/bitxhub/assets/js/app.3450d84e.js" defer></script><script src="/bitxhub/assets/js/2.9c5ab97b.js" defer></script><script src="/bitxhub/assets/js/9.a2be9c30.js" defer></script>
+  </body>
+</html>
