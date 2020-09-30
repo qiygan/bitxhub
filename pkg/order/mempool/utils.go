@@ -12,6 +12,7 @@ import (
 	"github.com/meshplus/bitxhub-model/pb"
 	"github.com/meshplus/bitxhub/internal/constant"
 	raftproto "github.com/meshplus/bitxhub/pkg/order/etcdraft/proto"
+
 	cmap "github.com/orcaman/concurrent-map"
 )
 
@@ -137,7 +138,7 @@ func getAccount(tx *pb.Transaction) (string, error) {
 	}
 	payload := &pb.InvokePayload{}
 	if err := payload.Unmarshal(tx.Data.Payload); err != nil {
-		return "", fmt.Errorf("unmarshal invoke payload: %s", err.Error())
+		return "", fmt.Errorf("unmarshal invoke payload failed: %s", err.Error())
 	}
 	if payload.Method == IBTPMethod1 || payload.Method == IBTPMethod2 {
 		ibtp := &pb.IBTP{}

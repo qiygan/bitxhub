@@ -28,12 +28,6 @@ func (mpi *mempoolImpl) batchDelete(hashes []types.Hash) {
 	batch.Commit()
 }
 
-func (mpi *mempoolImpl) store(tx *pb.Transaction) {
-	txKey := compositeKey(tx.TransactionHash.Bytes())
-	txData, _ := tx.Marshal()
-	mpi.storage.Put(txKey, txData)
-}
-
 func (mpi *mempoolImpl) load(hash types.Hash) (*pb.Transaction, bool) {
 	txKey := compositeKey(hash.Bytes())
 	txData := mpi.storage.Get(txKey)
